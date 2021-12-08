@@ -35,7 +35,7 @@ const noop = () => ({
  * @param {string}   input   Sass input string.
  * @param {Options=} options
  */
-async function main(input, options) {
+function main(input, options) {
 	const { camelize = false, sassOptions = {} } = options || {};
 
 	const cssProcessor = postcss([noop()]);
