@@ -24,7 +24,8 @@
 			"plugins": ["eslint-plugin-unicorn"],
 			"rules": {
 				"no-console": 0,
-				"unicorn/numeric-separators-style": 0
+				"unicorn/numeric-separators-style": 0,
+				"node/no-sync": 0
 			}
 		}
 	]

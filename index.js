@@ -1,4 +1,3 @@
-import { promisify } from 'util';
 import stripOuter from 'strip-outer';
 import camelcaseKeys from 'camelcase-keys';
 import postcss from 'postcss';
@@ -42,7 +41,7 @@ async function main(input, options) {
 	const cssProcessor = postcss([noop()]);
 
 	/* eslint-disable no-undefined */
-	const initialResponse = await cssProcessor.process(input, {
+	const initialResponse = cssProcessor.process(input, {
 		syntax: postcssScss,
 		from: undefined
 	});
@@ -69,18 +68,15 @@ async function main(input, options) {
 
 	const { functions, ...otherSassOptions } = sassOptions;
 
-	const sassResponse = await promisify(sass.render)({
+	const sassResponse = sass.renderSync({
 		data: initialRoot.toString(),
 		functions: { ...jsonFns, ...functions },
 		...otherSassOptions
 	});
 
-	const finalResponse = await cssProcessor.process(
-		sassResponse.css.toString(),
-		{
-			from: undefined
-		}
-	);
+	const finalResponse = cssProcessor.process(sassResponse.css.toString(), {
+		from: undefined
+	});
 	const finalRoot = finalResponse.root;
 
 	/** @type {JsonObject} */
@@ -89,7 +85,7 @@ async function main(input, options) {
 	finalRoot.walkRules('.__sassVars__', (rule) => {
 		rule.walkDecls('content', (decl) => {
 			const [property, value] = decl.value.split(' ":" ');
-			data[stripOuter(property, '"')] = JSON.parse(
+			data[stripOuter(stripOuter(property, '"'), '$')] = JSON.parse(
 				stripOuter(value, "'")
 			);
 		});

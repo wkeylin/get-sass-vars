@@ -1,9 +1,9 @@
 {
-  "name": "get-sass-vars",
+  "name": "format-sass-variable",
   "version": "3.2.1",
   "description": "Get Sass variables as JSON object.",
   "license": "MIT",
-  "author": "Ivan Nikolić <niksy5@gmail.com> (http://ivannikolic.com)",
+  "author": "kirin",
   "sideEffects": false,
   "exports": {
     ".": {
@@ -92,10 +92,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/niksy/get-sass-vars.git"
+    "url": "git+https://github.com/wkeylin/get-sass-vars.git"
   },
   "bugs": {
-    "url": "https://github.com/niksy/get-sass-vars/issues"
+    "url": "https://github.com/wkeylin/get-sass-vars/issues"
   },
-  "homepage": "https://github.com/niksy/get-sass-vars#readme"
+  "homepage": "https://github.com/wkeylin/get-sass-vars"
 }
